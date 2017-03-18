@@ -25,10 +25,12 @@ namespace Sumator4bitowy
 		public MainWindow()
 		{
 			InitializeComponent();
-			string A = "1010"; string B = "1010";
+			string A = "1001"; string B = "1000";
 			Wtyk[] LiczbaA = new Wtyk[4];
 			Wtyk[] LiczbaB = new Wtyk[4];
-			for (int i = 0; i < 4; i++) //tworzenie wtykow bitow wejsciowych
+			Wtyk[] Wynik = new Wtyk[4];
+			Wtyk Przeniesienie = new Wtyk(false); //przeniesienie wejściowe pierwszego sumatora to 0
+			for (int i = 0; i < 4; i++) //tworzenie wtykow bitow wejsciowych i nadanie wartosci ze stringow
 			{
 				bool bit;
 				bit = A[i] == '1';
@@ -36,25 +38,33 @@ namespace Sumator4bitowy
 				bit = B[i] == '1';
 				LiczbaB[i] = new Wtyk(bit);
 			}
-			//Przykład testowy
-			//Bramki.Add(new Bramka(OR));
-			//Bramki[0].UstawWtykiWejsciowe(false, true);
-			//Bramki.Add(new Bramka(OR));
-			//Bramki[1].UstawWtykiWejsciowe(false, true);
-
-			//Bramki.Add(new Bramka(AND));
-			//Bramki[2].PodlaczDoWejscia(0, Bramki[0]);
-			//Bramki[2].PodlaczDoWejscia(1, Bramki[1]);
-
-			Bramki.Add(new Bramka(XOR));
-			Bramki.Last().UstawWtykiWejsciowe(LiczbaA[3], LiczbaB[3]);
-			Bramki.Add(new Bramka(XOR));
-			Bramki.Last().UstawWtykiWejsciowe(new Wtyk(false), new Wtyk(false)); //pierwsze niewazne bo tam bedzie polaczenie, drugie to przeniesienie
-			Bramki.Last().PodlaczDoWejscia(0, Bramki[0]);
+			for (int i = 3; i >= 0; i--)
+			{
+				Bramka BramkaXor = new Bramka(XOR);
+				Bramki.Add(BramkaXor);
+				BramkaXor.UstawWtykiWejsciowe(LiczbaA[i], LiczbaB[i]);
+				Bramki.Add(new Bramka(XOR));
+				Bramki.Last().UstawWtykiWejsciowe(BramkaXor.Wyjscie, Przeniesienie);
+				Wynik[i] = Bramki.Last().Wyjscie;
+				Bramka ANDGorny = new Bramka(AND);
+				Bramki.Add(ANDGorny);
+				ANDGorny.UstawWtykiWejsciowe(LiczbaA[i], LiczbaB[i]);
+				Bramka ANDDolny = new Bramka(AND);
+				Bramki.Add(ANDDolny);
+				ANDDolny.UstawWtykiWejsciowe(Przeniesienie, BramkaXor.Wyjscie);
+				Bramka BramkaOR = new Bramka(OR);
+				Bramki.Add(BramkaOR);
+				BramkaOR.UstawWtykiWejsciowe(ANDGorny.Wyjscie, ANDDolny.Wyjscie);
+				Przeniesienie = BramkaOR.Wyjscie;
+			}
 
 			foreach (var bramka in Bramki)
 				bramka.WykonajDzialanie();
-			Console.WriteLine("Wyjscie ostatniej bramki: " + Bramki[Bramki.Count - 1].Wyjscie.Wartosc.ToString01());
+			Console.Write("Wynik: " + Przeniesienie.Wartosc.ToString01());
+			foreach (var wtyk in Wynik)
+				Console.Write(wtyk.Wartosc.ToString01());
+			Console.Write(Environment.NewLine);
+	
 		}
 		bool AND(bool a, bool b)
 		{

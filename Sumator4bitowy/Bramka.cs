@@ -28,10 +28,10 @@ namespace Sumator4bitowy
 			Wejscia[0] = wtykiWe[0];
 			Wejscia[1] = wtykiWe[1];
 		}
-		public void PodlaczDoWejscia(int doceloweWejscie, Bramka poprzednia)
-		{
-			Wejscia[doceloweWejscie] = poprzednia.Wyjscie;
-		}
+		//public void PodlaczDoWejscia(int doceloweWejscie,  Wtyk wyjscieInnej)
+		//{
+		//	Wejscia[doceloweWejscie] = wyjscieInnej;
+		//}
 		public void WykonajDzialanie()
 		{
 			_Wyjscie.Wartosc = DzialanieBramki(Wejscia[0].Wartosc, Wejscia[1].Wartosc);
