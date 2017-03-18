@@ -36,7 +36,7 @@ namespace Sumator4bitowy
 				bit = B[i] == '1';
 				LiczbaB[i] = new Wtyk(bit);
 			}
-			//Przykład testowy do usuniecia
+			//Przykład testowy
 			//Bramki.Add(new Bramka(OR));
 			//Bramki[0].UstawWtykiWejsciowe(false, true);
 			//Bramki.Add(new Bramka(OR));
