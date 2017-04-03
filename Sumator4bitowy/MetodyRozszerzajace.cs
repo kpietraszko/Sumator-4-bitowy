@@ -10,7 +10,7 @@ namespace Sumator4bitowy
 	{
 		public static string ToString01(this Boolean boolean)
 		{
-			return boolean == true ? "1" : "0";
+			return boolean ? "1" : "0";
 		}
 	}
 }
