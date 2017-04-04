@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
-
-namespace Sumator4bitowy
+﻿namespace Sumator4bitowy
 {
 	delegate bool Dzialanie(bool a, bool b);
 	class Bramka
@@ -25,13 +18,9 @@ namespace Sumator4bitowy
 		}
 		public void UstawWtykiWejsciowe(params Wtyk[] wtykiWe)
 		{
-			Wejscia[0] = wtykiWe[0];
-			Wejscia[1] = wtykiWe[1];
+			if(wtykiWe.Length == 2)
+				Wejscia = wtykiWe;
 		}
-		//public void PodlaczDoWejscia(int doceloweWejscie,  Wtyk wyjscieInnej)
-		//{
-		//	Wejscia[doceloweWejscie] = wyjscieInnej;
-		//}
 		public void WykonajDzialanie()
 		{
 			_Wyjscie.Wartosc = DzialanieBramki(Wejscia[0].Wartosc, Wejscia[1].Wartosc);

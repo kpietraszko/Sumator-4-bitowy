@@ -1,30 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 
 namespace Sumator4bitowy
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
 	public partial class MainWindow : Window
 	{
 		List<Bramka> Bramki = new List<Bramka>();
-		string LiczbaX = "0000";
-		string LiczbaY = "0000";
+		string LiczbaX = "1111";
+		string LiczbaY = "1111";
 		Wtyk[] X = new Wtyk[4];
 		Wtyk[] Y = new Wtyk[4];
 		Wtyk[] Wynik;
@@ -37,7 +27,6 @@ namespace Sumator4bitowy
 			InitializeComponent();
 			UstawieniaPoczatkoweKolorow();
 			Wynik = new Wtyk[4];
-			//Przeniesienie = new Wtyk(false); //przeniesienie wejściowe pierwszego sumatora to 0
 			UaktualnijWtykiWejsciowe();
 			for (int i = 3; i >= 0; i--) //łączenie bramek
 			{
@@ -125,7 +114,6 @@ namespace Sumator4bitowy
 			{
 				KoloryBramek[i] = new Rectangle();
 				KoloryBramek[i].Margin = new Thickness(i * 200, 40, 0, 20);
-				//Panel.SetZIndex(KoloryBramek[i], 1);
 				grid.Children.Add(KoloryBramek[i]);
 				KoloryBramek[i].Fill = Brushes.White;
 				Grid.SetRow(KoloryBramek[i], 1);
