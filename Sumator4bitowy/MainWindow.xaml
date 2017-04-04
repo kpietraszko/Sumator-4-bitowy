@@ -5,14 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sumator4bitowy"
         mc:Ignorable="d"
-        Title="Sumator 4-bitowy" ResizeMode="NoResize" Width="1279" WindowStartupLocation="CenterScreen" FontSize="14
-        ">
-    <Grid>
+        Title="Sumator 4-bitowy" ResizeMode="NoResize" Width="1279" WindowStartupLocation="CenterScreen" FontSize="14">
+    <Window.Resources>
+        <Style TargetType="Rectangle">
+            <Setter Property="Height" Value="68"/>
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Grid.Row" Value="1"/>
+            <Setter Property="Panel.ZIndex" Value="-1"/>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Rectangle Height="68" Grid.Row="1" Width="68" Fill="#FEFF0000" RenderTransformOrigin="0.5,0.5" Margin="1088,155,117,257"/>
+        <Rectangle Height="Auto" Grid.Row="1" Width="Auto" Fill="#FEFF0000" Margin="1178,194,4,259"/>
+
         <StackPanel Orientation="Horizontal">
             <Label Content="Wpisz 4-cyfrowe liczby binarne"/>
             <Label Margin="10,0,0,0" Content="X:"/>
@@ -22,6 +30,7 @@
             <Label Margin="10,0,0,0" Content="Suma:" FontWeight="Bold"/>
             <Label x:Name="PoleWyniku"  Content="" FontWeight="Bold"/>
         </StackPanel>
+        <Label Grid.Row="0" Content="Przełączanie między polami X i Y aktualizuje wynik" HorizontalAlignment="Right" Margin="0,0,20,0"/>
         <Image x:Name="schemat" Grid.Row="1" Source="pack://siteoforigin:,,,/sumator.png" Margin="4"/>
 
     </Grid>
